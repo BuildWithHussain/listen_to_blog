@@ -9,6 +9,7 @@ readme = "README.md"
 dynamic = ["version"]
 dependencies = [
     # "frappe~=15.0.0" # Installed and managed by bench.
+    "elevenlabs~=1.13.3"
 ]
 
 [build-system]
@@ -52,4 +53,3 @@ typing-modules = ["frappe.types.DF"]
 [tool.ruff.format]
 quote-style = "double"
 indent-style = "tab"
-docstring-code-format = true
