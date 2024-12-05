@@ -75,3 +75,10 @@ def delete_old_file_if_exists(blog_post):
 
 	if exists:
 		frappe.get_doc("File", {"file_name": file_name}).delete()
+
+@frappe.whitelist()
+def generate_missing_audio_files():
+	posts_with_no_audio = frappe.get_all("Blog Post", filters={"custom_audio": ("is", "not set")}, pluck="name")
+
+	for post in posts_with_no_audio:
+		generate_audio_file_for_blog_post(frappe.get_doc("Blog Post", post))
