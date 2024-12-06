@@ -5,6 +5,14 @@ app_description = "Frappe app that adds audio to Blog Post DocType, powered by e
 app_email = "buildwithhussain@gmail.com"
 app_license = "mit"
 
+doc_events = {
+	"Blog Post": {
+		"on_update": "listen_to_blog.audio_generator.generate_audio_file_for_blog_post",
+	}
+}
+
+doctype_js = {"Blog Post" : "public/js/extend_blog_post.js"}
+
 # Apps
 # ------------------
 
@@ -43,7 +51,8 @@ app_license = "mit"
 # page_js = {"page" : "public/js/file.js"}
 
 # include js in doctype views
-# doctype_js = {"doctype" : "public/js/doctype.js"}
+
+
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
 # doctype_calendar_js = {"doctype" : "public/js/doctype_calendar.js"}
@@ -137,11 +146,7 @@ app_license = "mit"
 # ---------------
 # Hook on document methods and events
 
-doc_events = {
-	"Blog Post": {
-		"on_update": "listen_to_blog.utils.generate_audio_file_for_blog_post",
-	}
-}
+
 
 # Scheduled Tasks
 # ---------------
