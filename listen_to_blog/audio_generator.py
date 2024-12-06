@@ -52,7 +52,9 @@ class BlogPostAudioGenerator:
 
 @frappe.whitelist()
 def _generate_and_attach_audio_file(blog_post_doc):
-	blog_post_doc = frappe.parse_json(blog_post_doc)
+	if isinstance(blog_post_doc, str):
+		blog_post_doc = frappe.parse_json(blog_post_doc)
+
 	field_name = TYPE_CONTENT_FIELD_MAP[blog_post_doc.content_type]
 	generator = BlogPostAudioGenerator(blog_post_doc.name, blog_post_doc.get(field_name))
 	generator.generate()
